@@ -17,6 +17,7 @@ class _GlowingButtonState extends State<GlowingButton> {
   var scale = 1.0;
   @override
   Widget build(BuildContext context) {
+    //TODO: If Mobile then use GestureDetector.This is for Web. 
     return MouseRegion(
       onExit:(val) {
         setState(() {
