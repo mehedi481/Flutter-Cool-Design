@@ -4,8 +4,9 @@ import 'package:mehedi_pattern/helpers/size_config/size_config.dart';
 class GlowingButton extends StatefulWidget {
   final Color color1;
   final Color color2;
+  final onPressedCallBack;
   const GlowingButton(
-      {Key? key, this.color1 = Colors.cyan, this.color2 = Colors.greenAccent})
+      {Key? key, this.color1 = Colors.cyan, this.color2 = Colors.greenAccent,@required this.onPressedCallBack})
       : super(key: key);
 
   @override
@@ -17,15 +18,16 @@ class _GlowingButtonState extends State<GlowingButton> {
   var scale = 1.0;
   @override
   Widget build(BuildContext context) {
-    //TODO: If Mobile then use GestureDetector.This is for Web. 
-    return MouseRegion(
-      onExit:(val) {
+    //TODO: If Web/Desktop then use MouseRegion.This is for Mobile. 
+    return GestureDetector(
+      onTap: widget.onPressedCallBack,
+      onTapUp:(val) {
         setState(() {
           isGlowing = false;
           scale = 1.0;
         });
       },
-      onEnter: (val) {
+      onTapDown: (val) {
         setState(() {
           isGlowing = true;
           scale = 1.1;
